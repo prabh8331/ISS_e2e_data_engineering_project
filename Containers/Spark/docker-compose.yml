@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+  spark-master:
+    image: bitnami/spark:3
+    ports:
+      - "7077:7077"
+      - "9537:8080"
+      # - "8080:8080"
+    environment:
+      - SPARK_MODE=master
+    volumes:
+      - ./scripts:/opt/bitnami/spark/scripts
+      - spark-data:/opt/bitnami/spark/data
+    networks:
+      - ISS_proj
+  spark-worker:
+    image: bitnami/spark:3
+    environment:
+      - SPARK_MODE=worker
+      - SPARK_MASTER_URL=spark://spark-master:7077
+    volumes:
+      - ./scripts:/opt/bitnami/spark/scripts
+      - spark-data:/opt/bitnami/spark/data
+    networks:
+      - ISS_proj
+volumes:
+  spark-data:
+    driver: local
+
+networks:
+  ISS_proj:
+    external: true
