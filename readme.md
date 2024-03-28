@@ -14,7 +14,7 @@ env
 ```
  -->
 
-proper soluiton - 
+add following in airflow webserve and scheduler docker-compose.yml file - 
 ```yml
 services:
   webserver:
