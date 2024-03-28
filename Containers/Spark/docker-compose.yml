@@ -3,6 +3,9 @@ version: '3'
 services:
   spark-master:
     image: bitnami/spark:3
+    entrypoint: ['/opt/bitnami/spark/scripts/entrypoint.sh']
+    command: ["/opt/bitnami/spark/bin/spark-class", "org.apache.spark.deploy.master.Master"]
+    user: root
     ports:
       - "7077:7077"
       - "9537:8080"
@@ -11,16 +14,21 @@ services:
       - SPARK_MODE=master
     volumes:
       - ./scripts:/opt/bitnami/spark/scripts
+      - ./requirements.txt:/opt/bitnami/spark/requirements.txt
       - spark-data:/opt/bitnami/spark/data
     networks:
       - ISS_proj
   spark-worker:
     image: bitnami/spark:3
+    entrypoint: ['/opt/bitnami/spark/scripts/entrypoint.sh']
+    command: ["/opt/bitnami/spark/bin/spark-class", "org.apache.spark.deploy.worker.Worker", "spark://spark-master:7077"]
+    user: root
     environment:
       - SPARK_MODE=worker
       - SPARK_MASTER_URL=spark://spark-master:7077
     volumes:
       - ./scripts:/opt/bitnami/spark/scripts
+      - ./requirements.txt:/opt/bitnami/spark/requirements.txt
       - spark-data:/opt/bitnami/spark/data
     networks:
       - ISS_proj

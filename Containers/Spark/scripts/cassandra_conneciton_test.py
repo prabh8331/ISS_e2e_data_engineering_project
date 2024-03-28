@@ -1,52 +1,22 @@
-import logging
 from cassandra.cluster import Cluster
 
-def create_keyspace(session):
-    session.execute("""
-        CREATE KEYSPACE IF NOT EXISTS test_keyspace
-        WITH replication = {'class': 'SimpleStrategy', 'replication_factor': '1'};
-    """)
+cluster = Cluster(['cassandra'])
+session = cluster.connect('my_keyspace')
 
-    print("Keyspace 'test_keyspace' created successfully!")
-
-def create_table(session):
-    session.execute("""
-    CREATE TABLE IF NOT EXISTS test_keyspace.test_table (
+# Create the iss_data table
+session.execute("""
+    CREATE TABLE IF NOT EXISTS iss_data (
         id UUID PRIMARY KEY,
-        first_name TEXT,
-        last_name TEXT
+        timestamp TIMESTAMP,
+        longitude FLOAT,
+        latitude FLOAT
     );
-    """)
+""")
 
-    print("Table 'test_table' created successfully!")
+# Insert the values
+session.execute("""
+    INSERT INTO iss_data (id, timestamp, longitude, latitude)
+    VALUES (uuid(), '2024-03-28 07:46:03', 77.1159, 26.7929);
+""")
 
-def insert_data(session):
-    try:
-        session.execute("""
-            INSERT INTO test_keyspace.test_table(id, first_name, last_name)
-            VALUES (uuid(), 'John', 'Doe');
-        """)
-        logging.info("Data inserted successfully!")
-
-    except Exception as e:
-        logging.error(f'Could not insert data due to {e}')
-
-def create_cassandra_connection():
-    try:
-        cluster = Cluster(['cassandra'])
-        cas_session = cluster.connect('test_keyspace')
-        return cas_session
-
-    except Exception as e:
-        logging.error(f"Could not create Cassandra connection due to {e}")
-        return None
-
-if __name__ == "__main__":
-    session = create_cassandra_connection()
-
-    if session is not None:
-        create_keyspace(session)
-        create_table(session)
-        insert_data(session)
-
-        session.shutdown()
+session.shutdown()
