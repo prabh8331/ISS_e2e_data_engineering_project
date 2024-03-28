@@ -23,12 +23,13 @@ def stream_data():
             break
         data = Reqdata.get_data()
         stream.produce_data(data)
+        time.sleep(10)
 
 
 with DAG('ISS_automation',
         default_args=default_args,
         # schedule_interval='@daily',
-        schedule_interval='*/5 * * * *',  # Run every 5 minutes
+        schedule_interval='*/4 * * * *',  # Run every 4 minutes
         catchup=False) as dag:
 
     streaming_task = PythonOperator(
