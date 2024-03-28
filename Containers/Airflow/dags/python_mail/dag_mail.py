@@ -47,7 +47,7 @@ def send_mail():
         server.quit()
 
 
-with DAG('ISS_automation',
+with DAG('SEND_ISS_MAIL',
         default_args=default_args,
         # schedule_interval='@daily',
         schedule_interval='*/1 * * * *',  # Run every 4 minutes
