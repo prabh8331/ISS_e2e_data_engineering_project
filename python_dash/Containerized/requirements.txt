@@ -1,0 +1,4 @@
+pandas
+folium
+dash
+cassandra-driver
