@@ -1,11 +1,14 @@
 # International space station, end to end Data Engineering live streaming project
 
-This project covers creation of robust data engineering pipeline, which uses various technologies like, Apache Airflow, Python, Apache Kafka, Apache Zookeeper, Apache Spark, Cassandra and Docker
+This project covers creation of robust data engineering pipeline, which uses various technologies like, Apache Airflow, Python, Apache Kafka, Apache Zookeeper, Apache Spark, Cassandra and Docker 
+
+Link to final dashboard- [link](isspydash.prabshhs.in)
 
 ## Architecture Flowchart
 
 ![FLowchart](ISS_system_Architecture.png)
 
+## Containers and their configrations 
 
 
 ### Add mail and password to envronment variable in airflow webserver and scheduler
