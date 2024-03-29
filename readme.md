@@ -8,7 +8,6 @@ This project covers creation of robust data engineering pipeline, which uses var
 
 
 
-
 ### Add mail and password to envronment variable in airflow webserver and scheduler
 
 <!-- this was a temprory solution, so added diretly to docker-compose file of airflow scheduler and webserver-->
