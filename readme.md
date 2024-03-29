@@ -2,7 +2,7 @@
 
 This project covers creation of robust data engineering pipeline, which uses various technologies like, Apache Airflow, Python, Apache Kafka, Apache Zookeeper, Apache Spark, Cassandra and Docker 
 
-Link to final dashboard- [link](isspydash.prabshhs.in)
+Link to final dashboard- [link](https://isspydash.prabshhs.in)
 
 ## Architecture Flowchart
 
