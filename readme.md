@@ -26,27 +26,21 @@ To set up the data pipeline, an environment hosting all the required services wi
 
 In this docker compose file there are total 3 containers required for the working of Apache Airflow
 
-1. Airflow Webserver- Provides user interface for Airflow. It allow users to interact with DAGs etc. `DAGs(Direct Acyclic Graphs) is collection of tasks that you want to run on a schedule represented as a Python script where each task is an instance of an operator`
+1. Airflow Webserver- Provides user interface for Airflow. It allow users to interact with DAGs etc. `DAGs(Direct Acyclic Graphs) is collection of tasks that you want to run on a schedule represented as a Python script where each task is an instance of an operator` [Dag location](Containers/Airflow/dags)
 2. Scheduler- Crucial component responsible for scheduling the execution of DAGs
 3. PostgreSQL- Store the Metadata of Airflow
 
-`FYI:` [entrypoint.sh](Containers/Airflow/script/entrypoint.sh) `This file will run first when docker container is initiated for run` 
+`FYI:` [entrypoint.sh](Containers/Airflow/script/entrypoint.sh) `This file will run first when docker container is initiated for run` note - if error comes and entrypoint.sh is not executable then use `chmod +x entrypoint.sh`
 
-### Add mail and password to envronment variable in airflow webserver and scheduler
+[requirements.txt](Containers/Airflow/requirements.txt) `This file contains list of all packages which is required inside the container, if new package is required install using this`
 
-<!-- this was a temprory solution, so added diretly to docker-compose file of airflow scheduler and webserver-->
-<!-- docker exec -it airflow-scheduler-1 bash
-docker exec -it airflow-webserver-1 bash
-```bash
 
-export GMAIL_EMAIL=your_email@gmail.com
-export GMAIL_PASSWORD=your_password
+### Additional configuration for sending mail
 
-env
-```
- -->
+In python for sending mail via SMTP it required email and its password(or API key), I am passing the email and password through the environment variable
 
-add following in airflow webserve and scheduler docker-compose.yml file - 
+Add following in airflow webserver and scheduler docker-compose.yml file -
+
 ```yml
 services:
   webserver:
@@ -54,3 +48,4 @@ services:
       - GMAIL_EMAIL=your_email@gmail.com
       - GMAIL_PASSWORD=your_password
 ```
+

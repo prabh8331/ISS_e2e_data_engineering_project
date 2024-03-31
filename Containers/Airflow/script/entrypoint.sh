@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e
+set -e   #script exit immediately if any command fails
 
 if [ -e "/opt/airflow/requirements.txt" ]; then
   $(command python) pip install --upgrade pip
@@ -19,4 +19,4 @@ fi
 
 $(command -v airflow) db upgrade
 
-exec airflow webserver
+exec airflow webserver  #start command for airflow webserver
