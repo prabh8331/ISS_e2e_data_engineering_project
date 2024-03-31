@@ -24,6 +24,14 @@ To set up the data pipeline, an environment hosting all the required services wi
 
 [Link to Docker compose file](Containers/Airflow/docker-compose.yml)
 
+In this docker compose file there are total 3 containers required for the working of Apache Airflow
+
+1. Airflow Webserver- Provides user interface for Airflow. It allow users to interact with DAGs etc. `DAGs(Direct Acyclic Graphs) is collection of tasks that you want to run on a schedule represented as a Python script where each task is an instance of an operator`
+2. Scheduler- Crucial component responsible for scheduling the execution of DAGs
+3. PostgreSQL- Store the Metadata of Airflow
+
+`FYI:` [entrypoint.sh](Containers/Airflow/script/entrypoint.sh) `This file will run first when docker container is initiated for run` 
+
 ### Add mail and password to envronment variable in airflow webserver and scheduler
 
 <!-- this was a temprory solution, so added diretly to docker-compose file of airflow scheduler and webserver-->

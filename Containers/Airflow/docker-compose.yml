@@ -27,7 +27,7 @@ services:
       - EXECUTOR=Sequential
       - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@postgres:5432/airflow
       - AIRFLOW_WEBSERVER_SECRET_KEY=this_is_a_very_secured_key
-      - GMAIL_EMAIL=your_email@gmail.com #required this for mail pipeline
+      - GMAIL_EMAIL=your_email@gmail.com #required this for auto mail sender pipeline
       - GMAIL_PASSWORD=your_password
     logging:
       options:
@@ -38,7 +38,7 @@ services:
       - ./script/entrypoint.sh:/opt/airflow/script/entrypoint.sh
       - ./requirements.txt:/opt/airflow/requirements.txt
     ports:
-      - "8536:8080"
+      - "8536:8080"  # changing port because 8080 is already in use on my server
       # - "8080:8080"
     healthcheck:
       test: ['CMD-SHELL', "[ -f /opt/airflow/airflow-webserver.pid ]"]
