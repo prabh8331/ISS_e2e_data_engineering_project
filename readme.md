@@ -74,7 +74,7 @@ There are 4 containers inside this docker compose:
 
 ### Spark Cluster containers
 
-[Link to docker compose file](Containers/spark/docker-compose.yml)
+[Link to docker compose file](Containers/Spark/docker-compose.yml)
 
 Spark cluster has Master and Worker architecture, 
 
