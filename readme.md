@@ -76,7 +76,7 @@ There are 4 containers inside this docker compose:
 
 [Link to docker compose file](Containers/Spark/docker-compose.yml)
 
-Spark cluster has Master and Worker architecture, `note: For this project i  just using 1 master and 1 worker node cluster`
+Spark cluster has Master and Worker architecture, `note: For this project using 1 master and 1 worker node cluster`
 
 1. Master Node: it coordinates the execution of spark applications and manages the cluster resources
 2. Worker Node: this perform the actual data processing tasks
