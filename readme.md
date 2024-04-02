@@ -81,4 +81,6 @@ Spark cluster has Master and Worker architecture, `note: For this project using 
 1. Master Node: it coordinates the execution of spark applications and manages the cluster resources
 2. Worker Node: this perform the actual data processing tasks
 
+### Cassandra container
 
+[Link to docker compose file](Containers/Cassandra/docker-compose.yml)
